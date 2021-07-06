@@ -1,0 +1,59 @@
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Cheese originals</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+
+  <br>
+  <br>
+
+  <form method="post">
+            {% csrf_token %}
+
+            {% for field in form %}
+              <div class="form-group row" aria-required={{ field.field.required }}>
+                <label
+                  for="{{ field.id_for_label }}"
+                  class="col-md-4 col-form-label text-md-right">
+                  {{ field.label }}
+                </label>
+                <div class="col-md-6">
+                  {{ field }}
+                  {% if field.help_text %}
+                    <small
+                      id="{{ field.id_for_label }}-help"
+                      class="form-text text-muted">
+                      {{ field.help_text|safe }}
+                    </small>
+                  {% endif %}
+
+                    {% if error_msg %}
+
+                      <p style="color:red">{{ error_msg }}</p>
+
+                    {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+
+            <div class="col-md-6 offset-md-4">
+
+              <button type="submit" class="btn btn-primary">
+                Send
+              </button>
+            </div>
+          </form>
+
+  </body>
+</html>

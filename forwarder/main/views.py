@@ -6,6 +6,10 @@ from .forms import ForwarderForm
 INVALID_ACCESS_CODE_MSG = 'Invalid access code'
 
 
+def index(request):
+    return redirect('https://yandex.ru')
+
+
 def forwarder(request, slug):
     rule = get_object_or_404(ForwarderModel, slug=slug)
     form = ForwarderForm(request.POST or None)

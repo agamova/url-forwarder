@@ -1,8 +1,11 @@
-    <meta
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Cheese originals</title>
+    <title>Company name</title>
 
     <!-- Bootstrap core CSS -->
     <link
@@ -11,49 +14,56 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-  </head>
+</head>
 
-  <body>
+<body>
+<div class="navbar navbar-dark bg-primary shadow-sm">
+    <div class="container">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24" style="margin-right:5px"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
 
+         <strong> Company name, Inc </strong>
+      </a>
+    </div>
+  </div>
   <br>
   <br>
 
-  <form method="post">
-            {% csrf_token %}
+  <div class="row">
 
-            {% for field in form %}
-              <div class="form-group row" aria-required={{ field.field.required }}>
-                <label
-                  for="{{ field.id_for_label }}"
-                  class="col-md-4 col-form-label text-md-right">
-                  {{ field.label }}
-                </label>
-                <div class="col-md-6">
-                  {{ field }}
-                  {% if field.help_text %}
-                    <small
-                      id="{{ field.id_for_label }}-help"
-                      class="form-text text-muted">
-                      {{ field.help_text|safe }}
-                    </small>
-                  {% endif %}
+    <div class="col-sm-4"></div>
 
-                    {% if error_msg %}
-
-                      <p style="color:red">{{ error_msg }}</p>
-
-                    {% endif %}
+    <div class="col-sm-4">
+         <div class="card text-center">
+             <h5 class="card-header">Enter your access code</h5>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-group row">
+                                <label for="{{ field.id_for_label }}"
+                                class="col-md-5 col-form-label text-md-right">
+                                {{ field.label }}
+                                </label>
+                                <div class="col-md-7 text-md-left">
+                                    {{ field }}
+                                    {% if error_msg %}
+                                       <p style="color:red">{{ error_msg }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                             <button type="submit" class="btn btn-primary btn-block">
+                                Send
+                             </button>
+                        </div></div>
+                    </form>
                 </div>
-              </div>
-            {% endfor %}
+         </div>
+    </div>
+  </div>
 
-            <div class="col-md-6 offset-md-4">
-
-              <button type="submit" class="btn btn-primary">
-                Send
-              </button>
-            </div>
-          </form>
-
-  </body>
+</body>
 </html>
